@@ -1,6 +1,5 @@
-# Projects
-This repository holds the python projects i have created, EVER
+# Header
 
-## Goals
+- You make projects here, thats all
 
-Make a lot of projects ig
+## something
