@@ -1,0 +1,4 @@
+- Origin
+
+Its basically the word that stands for the location for the git repository
+
