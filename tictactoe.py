@@ -49,8 +49,6 @@ def replace(index, item, sub=False):
             board[index] = item
         else:
             board[index - 1] = item
-    else:
-        return -1
 
 
 def play():
