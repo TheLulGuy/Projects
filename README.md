@@ -1,4 +1,6 @@
 # Projects
 This repository holds the python projects i have created, EVER
 
-## Subtitle ig
+## Goals
+
+Make a lot of projects ig
