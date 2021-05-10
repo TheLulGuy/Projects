@@ -64,6 +64,7 @@ def get_word():
 
 
 def play(word):
+    # Creates a hifen version of the word
     word_completion = "-" * len(word)
     guessed = False
     guessed_letters = []
