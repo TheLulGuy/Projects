@@ -12,8 +12,12 @@ def takeInputs():
         answer = ''
         try:
             answer = int(input('Chose a index to put your piece(1-9): '))
-            if answer > 9 or answer < 1:
+            
+            if answer == 69:
+                exit(0)
+            elif answer > 9 or answer < 1:
                 raise ValueError
+
             return answer
         except ValueError:
             print('Invalid input, try again')
@@ -66,7 +70,7 @@ def compTurn():
 
 def replace(index, item, sub=False):
     if sub == True:
-        index -= 1
+        index = index - 1
     
     if board[index] == ' ':
         board[index] = item
