@@ -74,7 +74,7 @@ def greeting():
 def compTurn():
     while True:
         a = random.randint(0, 9)
-        if a in takenSpots:
+        if board[a] != ' ':
             continue
         else:
             return a
