@@ -72,7 +72,12 @@ def greeting():
 
 
 def compTurn():
-    return random.randint(0, 9)
+    while True:
+        a = random.randint(0, 9)
+        if a in takenSpots:
+            continue
+        else:
+            return a
 
 def replace(index, item, sub=False):
     if sub == True:
@@ -80,6 +85,7 @@ def replace(index, item, sub=False):
     
     if board[index] == ' ':
         board[index] = item
+    
 
 def play():
     global board
