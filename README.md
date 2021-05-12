@@ -1,5 +1,3 @@
-# Header
+# Info
 
-- You make projects here, thats all
-
-## something
+- I make and upload my projects here, thats all. They may be incomplete sometimes
