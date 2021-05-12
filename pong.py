@@ -1,11 +1,11 @@
 import turtle
 
-wm = turtle.Screen()
-wm.title("Pong with Hom")
-wm.bgcolor('black')
-wm.setup(800, 600)
+window = turtle.Screen()
+window.title("Pong with Hom")
+window.bgcolor('black')
+window.setup(800, 600)
 # This makes th game update manually, to speed up the performance
-wm.tracer()
+window.tracer()
 
 # Paddle A
 paddle_a = turtle.Turtle()
@@ -32,6 +32,35 @@ ball.shape("circle")
 ball.color('white')
 ball.penup()
 ball.goto(0, 0)
+
+def paddle_a_up():
+    y = paddle_a.ycor()
+    y += 20 
+    paddle_a.sety(y) 
+
+def paddle_a_down():
+    y = paddle_a.ycor()
+    y += -20 
+    paddle_a.sety(y) 
+
+def paddle_b_up():
+    y = paddle_b.ycor()
+    y += 20 
+    paddle_b.sety(y) 
+
+def paddle_b_down():
+    y = paddle_b.ycor()
+    y += -20 
+    paddle_b.sety(y)
+
+# Binding keys to the function
+window.listen() # checks for keyboard input
+window.onkeypress(paddle_a_up, "w")
+window.onkeypress(paddle_a_down, "s")
+window.onkeypress(paddle_b_up, "Up")
+window.onkeypress(paddle_b_down, "Down")
+
+
 # Main game loop
 while True:
-    wm.update()
+    window.update()
