@@ -1,5 +1,6 @@
 import random
 
+
 def print_board():
     print(' {} | {} | {} '.format(board[0], board[1], board[2]))
     print('---+---+---')
@@ -7,18 +8,19 @@ def print_board():
     print('---+---+---')
     print(' {} | {} | {} '.format(board[6], board[7], board[8]))
 
+
 def takeInputs():
     while True:
         answer = ''
         try:
             answer = int(input('Chose a index to put your piece(1-9): '))
-            
+
             if answer not in takenSpots:
                 if answer == 69420:
                     exit(0)
                 if answer > 9 or answer < 1:
                     raise ValueError
-            
+
                 takenSpots.append(answer)
                 return answer
             else:
@@ -27,12 +29,13 @@ def takeInputs():
             print('Invalid input, try again')
             continue
 
+
 def boardFull():
     for item in board:
         if item == ' ':
             return False
-    
     return True
+
 
 def checkIfWon(value):
     # rows
@@ -50,7 +53,7 @@ def checkIfWon(value):
         return True
     if board[2] == value and board[5] == value and board[8] == value:
         return True
-    
+ 
     # diagonals
     if board[0] == value and board[4] == value and board[8] == value:
         return True
@@ -114,7 +117,7 @@ def play():
             replace(compTurn(), 'O')
             playerTurn = True
             continue
-    
+
     if not game_still_going_on:
         if checkIfWon('X'):
             print('YOU WON')
@@ -122,5 +125,7 @@ def play():
             print('YOU LOST')
         else:
             print('DRAW')
+        print('\nFinal board position: ')
+        print_board()
 
 play()
