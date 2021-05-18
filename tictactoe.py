@@ -8,6 +8,15 @@ def print_board():
     print('---+---+---')
     print(' {} | {} | {} '.format(board[6], board[7], board[8]))
 
+def chooseDifficulty():
+    while True:
+        dif = input('Easy or hard?').lower()
+        if dif == 'easy':
+            break
+        elif dif == 'hard':
+            break
+        else:
+            print('Invalid input')
 
 def takeInputs():
     while True:
@@ -76,7 +85,7 @@ def greeting():
 
 def compTurn():
     while True:
-        a = random.randint(0, 9)
+        a = random.randint(0, 8)
         if board[a] != ' ':
             continue
         else:
