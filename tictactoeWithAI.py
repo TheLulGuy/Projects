@@ -10,10 +10,10 @@ def print_board():
 
 def chooseDifficulty():
     while True:
-        dif = input('Easy or hard?').lower()
-        if dif == 'easy':
+        dif = input('(e)asy or (h)ard? ').lower()
+        if dif == 'easy' or dif == 'e':
             return False
-        elif dif == 'hard':
+        elif dif == 'hard' or dif == 'h':
             return True
         else:
             print('Invalid input')
@@ -79,13 +79,12 @@ def checkIfDraw():
     return False
 def greeting():
     while True:
-        print("Do you want to play?(y/n)")
-        answer = input().lower()
+        answer = input("Do you want to play?(y/n)").lower()
         if answer == 'y':
             break
         elif answer == 'n':
             print("Then y u waste my time")
-            exit(1)
+            exit()
 
 
 def compTurn():
@@ -103,77 +102,75 @@ def replace(index, item, sub=False):
     if board[index] == ' ':
         board[index] = item
 
-def minimax(board, depth, isMaximizing):
-    if checkIfWon('O'):
-        return 100
-
-    elif checkIfWon('X'):
-        return -100
-
-    elif checkIfDraw():
-        return 0
-    
-    if isMaximizing:
-        bestScore = -1000
-
-        for i in range(len(board)):
-            if(board[i] == ' '):
-                board[i] = 'O' 
-                score = minimax(board, 0, False)
-                board[i] = ' '
-                if(score > bestScore):
-                    bestScore = score
-        
-        return bestScore
-        
-    else:
-        bestScore = 800
-
-        for i in range(len(board)):
-            if(board[i] == ' '):
-                board[i] = 'X' 
-                score = minimax(board, 0, True)
-                board[i] = ' '
-                if(score > bestScore):
-                    bestScore = score
-        
-        return bestScore
 
 
-
-def GeniusComputerMove():
-    bestScore = -1000
+def GeniusCompMove():
+    bestScore = -800
     bestMove = 0
-
     for i in range(len(board)):
         if board[i] == ' ':
-            board[i] = 'O' 
+            board[i] = 'O'
             score = minimax(board, 0, False)
             board[i] = ' '
-            if(score > bestScore):
+            if (score > bestScore):
                 bestScore = score
                 bestMove = i
-    
+
     return bestMove
+
+
+def minimax(board, depth, isMaximizing):
+    if checkIfWon('O'):
+        return 1
+    elif checkIfWon('X'):
+        return -1
+    elif checkIfDraw():
+        return 0
+
+    if isMaximizing:
+        bestScore = -800
+        for i in range(len(board)):
+            if board[i] == ' ':
+                board[i] = 'O'
+                score = minimax(board, depth + 1, False)
+                board[i] = ' '
+                if (score > bestScore):
+                    bestScore = score
+        return bestScore
+
+    else:
+        bestScore = 800
+        for i in range(len(board)):
+            if (board[i] == ' '):
+                board[i] = 'X'
+                score = minimax(board, depth + 1, True)
+                board[i] = ' '
+                if (score < bestScore):
+                    bestScore = score
+        return bestScore
 
 def play():
     global board
     global game_still_going_on
     global takenSpots
     takenSpots = []
-    won = ''
+    won = ' '
     board = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
     game_still_going_on = True
     playerTurn = True
     greeting()
     difficulty = chooseDifficulty()
     while game_still_going_on:
-        if checkIfWon('X'):
+        if boardFull():
+            game_still_going_on = False
+
+        elif checkIfWon('X'):
             won = 'X'
             game_still_going_on = False
         elif checkIfWon('O'):
             won = 'O'
             game_still_going_on = False
+        
         elif playerTurn == True:
             print_board()
             replace(takeInputs(), 'X', sub=True)
@@ -182,18 +179,19 @@ def play():
         else:
             # playerTurn == False
             if difficulty:
-                replace(GeniusComputerMove(), 'O')
+                replace(GeniusCompMove(), 'O')
             else:
                 replace(compTurn(), 'O')
             playerTurn = True
             continue
 
     if not game_still_going_on:
-        if checkIfWon('X'):
-            print('YOU WON')
-        elif checkIfWon('O'):
-            print('YOU LOST')
-        else:
+        if won != ' ':
+            if won == 'X':
+                print('YOU WON')
+            elif won == 'O':
+                print('YOU LOST')
+        elif checkIfDraw():
             print('DRAW')
         print('\nFinal board position: ')
         print_board()
