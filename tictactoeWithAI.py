@@ -32,6 +32,7 @@ def takeInputs():
 
                 takenSpots.append(answer)
                 return answer
+
             else:
                 raise ValueError
         except ValueError:
