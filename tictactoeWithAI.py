@@ -15,6 +15,9 @@ def chooseDifficulty():
             return False
         elif dif == 'hard' or dif == 'h':
             return True
+        elif dif == 'neither' or dif == 'none':
+            print('Haha very funny')
+            exit(0)
         else:
             print('Invalid input')
 
@@ -78,14 +81,6 @@ def checkIfDraw():
             return True
     
     return False
-def greeting():
-    while True:
-        answer = input("Do you want to play?(y/n)").lower()
-        if answer == 'y':
-            break
-        elif answer == 'n':
-            print("Then y u waste my time")
-            exit()
 
 
 def compTurn():
@@ -159,7 +154,6 @@ def play():
     board = [' ',' ',' ',' ',' ',' ',' ',' ',' ']
     game_still_going_on = True
     playerTurn = True
-    greeting()
     difficulty = chooseDifficulty()
     while game_still_going_on:
         if boardFull():
@@ -198,4 +192,12 @@ def play():
         print_board()
 
 play()
+while True:
+    answer = input('Do you want to play again?(Y/N): ').upper()
+    if answer == 'Y':
+        play()
+    elif answer == 'N':
+        exit(0)
+    else:
+        print('Invalid input, try again')
 
